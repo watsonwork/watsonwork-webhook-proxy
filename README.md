@@ -1,5 +1,7 @@
 # Watson Work Webhook Proxy
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/watsonwork/watsonwork-webhook-proxy.svg)](https://greenkeeper.io/)
+
 This is a proxy that allows accessing webhook events without a need of exposing public internet URL by the app.
 
 ## Basics
