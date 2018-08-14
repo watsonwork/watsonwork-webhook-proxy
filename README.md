@@ -17,7 +17,7 @@ An app may periodically call the proxy and retrieve all the stored events.
 An app may initiate a persistent connection to the proxy and get all the stored events as well as new ones in real time trough that connection.
 
 ## Operation
-You can deploy the app yourself or use a version deployed already on bluemix under [https://watsonwork-webhook-proxy.mybluemix.net/].
+You can deploy the app yourself or use a version deployed already on bluemix under `https://watsonwork-webhook-proxy.mybluemix.net/`.
 
 All APIs require regular IBM Watson Work authentication token, that is
 ```
