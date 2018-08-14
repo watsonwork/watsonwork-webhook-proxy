@@ -68,7 +68,7 @@ App can be set up to use the app to use the proxy in the following way.
 
 1. Create webhook for the app, and specify proxy `/hook/:appId` URL as a webhook endpoint. For example `https://watsonwork-webhook-proxy.mybluemix.net/hook/8eecdc5d-1222-40db-80f7-56dff9b0439c`. Remember to record your webhook secret.
 
-2. Register the webhook in the proxy by calling `PUT /webnooks/:appId` API. For example `https://watsonwork-webhook-proxy.mybluemix.net/webhooks/8eecdc5d-1222-40db-80f7-56dff9b0439c` and your webhook secret in the payload.
+2. Register the webhook in the proxy by calling `PUT /webhooks/:appId` API. For example `https://watsonwork-webhook-proxy.mybluemix.net/webhooks/8eecdc5d-1222-40db-80f7-56dff9b0439c` and your webhook secret in the payload.
 
 3. Enable the webhook.
 
