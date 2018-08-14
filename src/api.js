@@ -6,9 +6,7 @@ import * as auth from './auth';
 import * as settings from './settings';
 import * as queue from './queue';
 
-
 const log = debug('watsonwork-webhook-proxy-manage');
-
 
 const register = (req, res) => {
   if (req.body.secret) {
