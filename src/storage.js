@@ -1,7 +1,6 @@
 import * as pkgcloud from 'pkgcloud';
 import * as vcap from 'vcap_services';
 
-
 export const CONTAINER = 'hooksy';
 let client;
 
