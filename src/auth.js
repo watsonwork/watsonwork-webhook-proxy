@@ -6,7 +6,7 @@ const log = debug('watsonwork-webhook-proxy-auth');
 const setAppId = (req) => {
   let parts = req.url.split(/\//);
   let appId = parts[parts.length - 1];
-  req.appId = appId;  
+  req.appId = appId;
   log('appId=' + appId);
 };
 
@@ -17,9 +17,9 @@ export const requireAppId = (req, res, next) => {
     return;
   }
   next();
-}; 
+};
 
-export const authenticate = (req, cb) => {
+export const authenticate = (req, next) => {
   let token = null;
   if (req.headers && req.headers.authorization) {
     let parts = req.headers.authorization.split(' ');
@@ -28,32 +28,28 @@ export const authenticate = (req, cb) => {
     }
   }
   if (token === null) {
-    cb(false);
-    return;
+    return next(false);
   }
   wwapi.getId(token, (err, id) => {
     log(id);
-    if (err) { 
+    if (err) {
       log(err);
-      cb(false);
-      return;
+      return next(false);
     }
     if (req.appId === id) {
-      cb(true);
-    }
-    else {
-      cb(false);
+      next(true);
+    } else {
+      next(false);
     }
   });
 };
 
-export const websocket = (info, cb) => {
+export const websocket = (info, next) => {
   setAppId(info.req);
   if (info.req.appId) {
-    authenticate(info.req, cb);
-  }
-  else {
-    cb(false);
+    authenticate(info.req, next);
+  } else {
+    next(false);
   }
 };
 

@@ -16,18 +16,15 @@ const push = (appId) => {
       log('  event ' + event.id);
       connections[appId].send(JSON.stringify(event));
     }
-  }
-  else {
+  } else {
     log('No connection with ' + appId);
   }
 };
 
-
-
 export const init = (server) => {
-  const wss = new WebSocket.Server({ server : server, verifyClient: auth.websocket });
+  const wss = new WebSocket.Server({ server: server, verifyClient: auth.websocket });
   queue.addListener(push);
-  wss.on('connection', function connection(ws, req) {
+  wss.on('connection', (ws, req) => {
     ws.appId = req.appId;
     log('Connection from ' + ws.appId);
     connections[ws.appId] = ws;
@@ -36,7 +33,7 @@ export const init = (server) => {
     ws.on('message', (data) => {
       let message = JSON.parse(data);
       if (message) {
-        if (message.type == 'event_ack') {
+        if (message.type === 'event_ack') {
           if (message.id) {
             log('Event ' + ws.appId + '/' + message.id + ' accepted');
             queue.remove(ws.appId, message.id);
@@ -45,14 +42,10 @@ export const init = (server) => {
         }
       }
     });
-  
-    ws.on('close', function close() {
+
+    ws.on('close', () => {
       log('Closed connection from ' + ws.appId);
       delete connections[ws.appId];
     });
   });
 };
-
-
-
-

@@ -4,10 +4,9 @@ import express from 'express';
 import * as settings from './settings';
 import * as auth from './auth';
 import * as queue from './queue';
+import debug from 'debug';
 
 export const router = express.Router();
-
-import debug from 'debug';
 
 const log = debug('watsonwork-webhook-proxy-wwhook');
 
@@ -37,13 +36,12 @@ const challenge = (req, res, next) => {
   next();
 };
 
-
 export const process = (req, res) => {
   queue.put(req.appId, req.get('X-OUTBOUND-INDEX'), req.body);
   res.status(201).end();
 };
 
 router.use(auth.requireAppId);
-router.use(bparser.json({ type: '*/*' , verify: verify }));
+router.use(bparser.json({ type: '*/*', verify: verify }));
 router.use(challenge);
 router.use(process);
