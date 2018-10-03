@@ -1,13 +1,11 @@
 import * as pkgcloud from 'pkgcloud';
 import * as vcap from 'vcap_services';
 
-
 export const CONTAINER = 'hooksy';
 let client;
 
 const auth = (cb) =>
   client.auth((err) => cb(err, client._identity));
-
 
 export const init = (cb) => {
   let creds = vcap.getCredentials('Object-Storage');
@@ -17,7 +15,7 @@ export const init = (cb) => {
     useInternal: false,
     keystoneAuthVersion: 'v3'
   };
-  Object.assign(config,creds);
+  Object.assign(config, creds);
   config.tennantId = config.projectId;
   config.authUrl = config.auth_url;
 
@@ -44,14 +42,12 @@ export const read = (file, cb) => {
   });
   let buf = '';
   download.on('error', (err) => cb(err));
-  download.on('data', (data) => buf += data);
+  download.on('data', (data) => (buf += data));
   download.on('end', () => {
     try {
       cb(null, JSON.parse(buf));
-    }
-    catch (e) {
+    } catch (e) {
       cb(e);
     }
   });
-  return;
 };

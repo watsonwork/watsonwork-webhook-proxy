@@ -10,14 +10,14 @@ export const addListener = (cb) => {
 export const getNext = (appId) => {
   if (!queue[appId]) return null;
   let keys = Object.keys(queue[appId]);
-  if (keys.length == 0) return null;
+  if (keys.length === 0) return null;
   let key = keys[0];
   return { type: 'event', id: key, data: queue[appId][key] };
 };
 
 export const remove = (appId, key) => {
   if (!queue[appId]) return null;
-  return delete queue[appId][key];  
+  return delete queue[appId][key];
 };
 
 export const put = (appId, key, data) => {
@@ -25,7 +25,7 @@ export const put = (appId, key, data) => {
   queue[appId][key] = data;
   let keys = Object.keys(queue[appId]);
   if (keys.length > QUEUE_MAX) remove(appId, keys[0]);
-  if (listener) listener(appId); 
+  if (listener) listener(appId);
 };
 
 export const getAll = (appId) => {
@@ -33,5 +33,5 @@ export const getAll = (appId) => {
 };
 
 export const clear = (appId) => {
-  queue[appId] = [];
+  queue[appId] = {};
 };

@@ -24,7 +24,6 @@ export const graphql = (token, body, cb) => {
       }
       catch (e) {
         cb(e);
-        return;
       }
       // log('Send result %d, %o', res.statusCode, res.body);
     });

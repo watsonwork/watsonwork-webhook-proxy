@@ -14,10 +14,8 @@ const main = (env, cb) => {
   settings.load((err) => {
     log('Can not load settings');
     log(err);
-    return;
   });
-  
-  
+
   const app = express();
   app.use('/webhooks', api.getRouter());
   app.use('/hook', wwhook.router);
@@ -28,8 +26,8 @@ const main = (env, cb) => {
     server.listen(env.PORT, cb);
   }
 };
- 
-if (require.main === module)
+
+if (require.main === module) {
   main(process.env, (err) => {
     if (err) {
       console.log('Error starting app:', err);
@@ -37,3 +35,4 @@ if (require.main === module)
     }
     log('App started');
   });
+}
