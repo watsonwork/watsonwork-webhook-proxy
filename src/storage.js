@@ -42,11 +42,12 @@ export const read = (file, cb) => {
   });
   let buf = '';
   download.on('error', (err) => cb(err));
-  download.on('data', (data) => (buf += data));
+  download.on('data', (data) => buf += data);
   download.on('end', () => {
     try {
       cb(null, JSON.parse(buf));
-    } catch (e) {
+    }
+    catch (e) {
       cb(e);
     }
   });
