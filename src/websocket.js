@@ -16,7 +16,8 @@ const push = (appId) => {
       log('  event ' + event.id);
       connections[appId].send(JSON.stringify(event));
     }
-  } else {
+  }
+  else {
     log('No connection with ' + appId);
   }
 };
