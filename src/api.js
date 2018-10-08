@@ -13,7 +13,8 @@ const register = (req, res) => {
     log('Registering ' + req.params.appId);
     settings.setSecret(req.params.appId, req.body.secret);
     res.status(201).end();
-  } else {
+  }
+  else {
     res.status(400).end();
   }
 };

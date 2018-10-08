@@ -30,17 +30,17 @@ export const authenticate = (req, next) => {
   if (token === null) {
     return next(false);
   }
-  wwapi.getId(token, (err, id) => {
+  return wwapi.getId(token, (err, id) => {
     log(id);
     if (err) {
       log(err);
       return next(false);
     }
     if (req.appId === id) {
-      next(true);
-    } else {
-      next(false);
-    }
+      return next(true);
+    }    
+    return next(false);
+    
   });
 };
 
@@ -48,7 +48,8 @@ export const websocket = (info, next) => {
   setAppId(info.req);
   if (info.req.appId) {
     authenticate(info.req, next);
-  } else {
+  }
+  else {
     next(false);
   }
 };
