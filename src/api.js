@@ -42,3 +42,5 @@ export const getRouter = () => {
   router.get('/:appId', getAll);
   return router;
 };
+
+module.exports = getRouter;
