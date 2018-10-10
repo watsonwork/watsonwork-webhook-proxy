@@ -1,7 +1,6 @@
-import * as auth from './auth';
-import * as queue from './queue';
-
-import debug from 'debug';
+const auth = require('./auth');
+const queue = require('./queue');
+const debug = require('debug');
 
 const log = debug('watsonwork-webhook-proxy-app');
 

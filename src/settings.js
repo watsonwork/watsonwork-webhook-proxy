@@ -1,6 +1,5 @@
-import debug from 'debug';
-
-import * as storage from './storage';
+const debug = require('debug');
+const storage = require('./storage');
 const log = debug('watsonwork-webhook-proxy-settings');
 let apps = {};
 

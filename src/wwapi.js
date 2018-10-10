@@ -1,5 +1,5 @@
-import * as request from 'request';
-import debug from 'debug';
+const request = require('request');
+const debug = require('debug');
 
 // Debug log
 const log = debug('watsonwork-webhook-proxy-wwapi');

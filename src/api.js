@@ -1,10 +1,10 @@
-// import * as querystring from 'querystring';
-import debug from 'debug';
-import * as express from 'express';
-import * as bparser from 'body-parser';
-import * as auth from './auth';
-import * as settings from './settings';
-import * as queue from './queue';
+// const querystring = require ('querystring');
+const debug = require ('debug').debug;
+const express = require ('express');
+const bparser = require('body-parser');
+const auth = require('./auth');
+const settings = require('./settings');
+const queue = require('./queue');
 
 const log = debug('watsonwork-webhook-proxy-manage');
 

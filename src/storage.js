@@ -1,5 +1,5 @@
-import * as pkgcloud from 'pkgcloud';
-import * as vcap from 'vcap_services';
+const pkgcloud = require('pkgcloud');
+const vcap = require('vcap_services');
 
 export const CONTAINER = 'hooksy';
 let client;

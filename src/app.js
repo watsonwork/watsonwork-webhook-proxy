@@ -1,10 +1,10 @@
-import express from 'express';
-import * as http from 'http';
-import debug from 'debug';
-import * as api from './api';
-import * as settings from './settings';
-import * as wwhook from './wwhook';
-import * as websocket from './websocket';
+const express = require('express');
+const http = require('http');
+const debug = require('debug');
+const api = require('./api');
+const settings = require('./settings');
+const wwhook = require('./wwhook');
+const websocket = require('./websocket');
 
 const log = debug('watsonwork-webhook-proxy-app');
 

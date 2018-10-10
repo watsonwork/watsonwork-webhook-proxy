@@ -1,10 +1,10 @@
-import * as bparser from 'body-parser';
-import { createHmac } from 'crypto';
-import express from 'express';
-import * as settings from './settings';
-import * as auth from './auth';
-import * as queue from './queue';
-import debug from 'debug';
+const bparser = require('body-parser');
+const createHmac = require('crypto').createHmac;
+const express = require('express');
+const settings = require('./settings');
+const auth = require('./auth');
+const queue = require('./queue');
+const debug = require('debug');
 
 export const router = express.Router();
 
