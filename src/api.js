@@ -32,7 +32,7 @@ const getAll = (req, res) => {
   res.end();
 };
 
-export const getRouter = () => {
+const getRouter = () => {
   let router = express.Router();
   router.use(auth.requireAppId);
   router.use(auth.auth);
