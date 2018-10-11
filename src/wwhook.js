@@ -6,7 +6,8 @@ const auth = require('./auth');
 const queue = require('./queue');
 const debug = require('debug');
 
-export const router = express.Router();
+const router = express.Router();
+exports.router = router;
 
 const log = debug('watsonwork-webhook-proxy-wwhook');
 
@@ -36,7 +37,7 @@ const challenge = (req, res, next) => {
   next();
 };
 
-export const process = (req, res) => {
+exports.process = (req, res) => {
   queue.put(req.appId, req.get('X-OUTBOUND-INDEX'), req.body);
   res.status(201).end();
 };
@@ -44,4 +45,5 @@ export const process = (req, res) => {
 router.use(auth.requireAppId);
 router.use(bparser.json({ type: '*/*', verify: verify }));
 router.use(challenge);
-router.use(process);
+router.use(exports.process);
+

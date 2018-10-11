@@ -43,4 +43,4 @@ const getRouter = () => {
   return router;
 };
 
-module.exports = getRouter;
+exports.getRouter = getRouter;

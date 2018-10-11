@@ -10,7 +10,7 @@ const setAppId = (req) => {
   log('appId=' + appId);
 };
 
-export const requireAppId = (req, res, next) => {
+exports.requireAppId = (req, res, next) => {
   setAppId(req);
   if (!req.appId) {
     res.status(400).send();
@@ -19,7 +19,7 @@ export const requireAppId = (req, res, next) => {
   next();
 };
 
-export const authenticate = (req, next) => {
+exports.authenticate = (req, next) => {
   let token = null;
   if (req.headers && req.headers.authorization) {
     let parts = req.headers.authorization.split(' ');
@@ -44,7 +44,7 @@ export const authenticate = (req, next) => {
   });
 };
 
-export const websocket = (info, next) => {
+exports.websocket = (info, next) => {
   setAppId(info.req);
   if (info.req.appId) {
     authenticate(info.req, next);
@@ -54,7 +54,7 @@ export const websocket = (info, next) => {
   }
 };
 
-export const auth = (req, res, next) => {
+exports.auth = (req, res, next) => {
   authenticate(req, (result) => {
     if (result) next();
     else {
@@ -62,3 +62,4 @@ export const auth = (req, res, next) => {
     }
   });
 };
+

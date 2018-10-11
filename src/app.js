@@ -27,12 +27,10 @@ const main = (env, cb) => {
   }
 };
 
-if (require.main === module) {
-  main(process.env, (err) => {
-    if (err) {
-      console.log('Error starting app:', err);
-      return;
-    }
-    log('App started');
-  });
-}
+main(process.env, (err) => {
+  if (err) {
+    console.log('Error starting app:', err);
+    return;
+  }
+  log('App started');
+});
