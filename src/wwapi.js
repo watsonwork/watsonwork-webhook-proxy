@@ -4,7 +4,7 @@ const debug = require('debug');
 // Debug log
 const log = debug('watsonwork-webhook-proxy-wwapi');
 
-export const graphql = (token, body, cb) => {
+const graphql = (token, body, cb) => {
   request.post(
     'https://api.watsonwork.ibm.com/graphql', {
       headers: {
@@ -29,9 +29,12 @@ export const graphql = (token, body, cb) => {
     });
 };
 
-export const getId = (token, cb) => {
+const getId = (token, cb) => {
   graphql(token, '{ me { id } }', (err, res) => {
     if (err) cb(err);
     else cb(null, res.data.me.id);
   });
 };
+
+module.exports = graphql;
+module.exports = getId;

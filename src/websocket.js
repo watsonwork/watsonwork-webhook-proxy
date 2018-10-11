@@ -21,7 +21,7 @@ const push = (appId) => {
   }
 };
 
-export const init = (server) => {
+const init = (server) => {
   const wss = new WebSocket.Server({ server: server, verifyClient: auth.websocket });
   queue.addListener(push);
   wss.on('connection', (ws, req) => {
@@ -49,3 +49,5 @@ export const init = (server) => {
     });
   });
 };
+
+module.exports = init;
