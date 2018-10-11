@@ -47,7 +47,7 @@ exports.authenticate = (req, next) => {
 exports.websocket = (info, next) => {
   setAppId(info.req);
   if (info.req.appId) {
-    authenticate(info.req, next);
+    exports.authenticate(info.req, next);
   }
   else {
     next(false);
@@ -55,7 +55,7 @@ exports.websocket = (info, next) => {
 };
 
 exports.auth = (req, res, next) => {
-  authenticate(req, (result) => {
+  exports.authenticate(req, (result) => {
     if (result) next();
     else {
       res.status(401).send();
