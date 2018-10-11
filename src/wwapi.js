@@ -30,7 +30,7 @@ exports.graphql = (token, body, cb) => {
 };
 
 exports.getId = (token, cb) => {
-  graphql(token, '{ me { id } }', (err, res) => {
+  exports.graphql(token, '{ me { id } }', (err, res) => {
     if (err) cb(err);
     else cb(null, res.data.me.id);
   });
