@@ -4,5 +4,5 @@ applications:
   instances: 1
   domain: mybluemix.net
   name: watsonwork-webhook-proxy
-  host: watsonwork-webhook-proxy
+  host: watsonwork-webhook-proxy-me
   disk_quota: 1024M
