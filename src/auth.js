@@ -10,7 +10,7 @@ const setAppId = (req) => {
   log('appId=' + appId);
 };
 
-const requireAppId = (req, res, next) => {
+exports.requireAppId = (req, res, next) => {
   setAppId(req);
   if (!req.appId) {
     res.status(400).send();
@@ -19,7 +19,7 @@ const requireAppId = (req, res, next) => {
   next();
 };
 
-const authenticate = (req, next) => {
+exports.authenticate = (req, next) => {
   let token = null;
   if (req.headers && req.headers.authorization) {
     let parts = req.headers.authorization.split(' ');
@@ -44,7 +44,7 @@ const authenticate = (req, next) => {
   });
 };
 
-const websocket = (info, next) => {
+exports.websocket = (info, next) => {
   setAppId(info.req);
   if (info.req.appId) {
     authenticate(info.req, next);
@@ -54,7 +54,7 @@ const websocket = (info, next) => {
   }
 };
 
-const auth = (req, res, next) => {
+exports.auth = (req, res, next) => {
   authenticate(req, (result) => {
     if (result) next();
     else {
@@ -63,7 +63,3 @@ const auth = (req, res, next) => {
   });
 };
 
-module.exports = requireAppId;
-module.exports = authenticate;
-module.exports = websocket;
-module.exports = auth;

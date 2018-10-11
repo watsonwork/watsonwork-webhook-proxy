@@ -1,13 +1,13 @@
 const pkgcloud = require('pkgcloud');
 const vcap = require('vcap_services');
 
-const CONTAINER = 'hooksy';
+exports.CONTAINER = 'hooksy';
 let client;
 
 const auth = (cb) =>
   client.auth((err) => cb(err, client._identity));
 
-const init = (cb) => {
+exports.init = (cb) => {
   let creds = vcap.getCredentials('Object-Storage');
   let config = {
     provider: 'openstack',
@@ -23,9 +23,9 @@ const init = (cb) => {
   auth(cb);
 };
 
-const write = (obj, file, cb) => {
+exports.write = (obj, file, cb) => {
   let upload = client.upload({
-    container: CONTAINER,
+    container: exports.CONTAINER,
     remote: file
   });
 
@@ -35,9 +35,9 @@ const write = (obj, file, cb) => {
   upload.end();
 };
 
-const read = (file, cb) => {
+exports.read = (file, cb) => {
   let download = client.download({
-    container: CONTAINER,
+    container: exports.CONTAINER,
     remote: file
   });
   let buf = '';
@@ -53,7 +53,3 @@ const read = (file, cb) => {
   });
 };
 
-module.exports = CONTAINER;
-module.exports = init;
-module.exports = write;
-module.exports = read;

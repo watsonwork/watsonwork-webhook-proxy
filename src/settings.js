@@ -3,7 +3,7 @@ const storage = require('./storage');
 const log = debug('watsonwork-webhook-proxy-settings');
 let apps = {};
 
-const load = (cb) => {
+exports.load = (cb) => {
   storage.init((err, id) => {
     cb(err);
   });
@@ -22,19 +22,16 @@ const save = () => {
   });
 };
 
-const getSecret = (appId) => apps[appId];
+exports.getSecret = (appId) => apps[appId];
 
-const setSecret = (appId, secret) => {
+exports.setSecret = (appId, secret) => {
   apps[appId] = secret;
   save();
 };
 
-const remove = (appId) => {
+exports.remove = (appId) => {
   delete apps[appId];
   save();
 };
 
-module.exports = load;
-module.exports = getSecret;
-module.exports = setSecret;
-module.exports = remove;
+

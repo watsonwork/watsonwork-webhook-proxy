@@ -3,11 +3,11 @@ let queue = {};
 const QUEUE_MAX = 100;
 
 let listener = null;
-const addListener = (cb) => {
+exports.addListener = (cb) => {
   listener = cb;
 };
 
-const getNext = (appId) => {
+exports.getNext = (appId) => {
   if (!queue[appId]) return null;
   let keys = Object.keys(queue[appId]);
   if (keys.length === 0) return null;
@@ -15,12 +15,12 @@ const getNext = (appId) => {
   return { type: 'event', id: key, data: queue[appId][key] };
 };
 
-const remove = (appId, key) => {
+exports.remove = (appId, key) => {
   if (!queue[appId]) return null;
   return delete queue[appId][key];
 };
 
-const put = (appId, key, data) => {
+exports.put = (appId, key, data) => {
   if (!queue[appId]) queue[appId] = {};
   queue[appId][key] = data;
   let keys = Object.keys(queue[appId]);
@@ -28,17 +28,11 @@ const put = (appId, key, data) => {
   if (listener) listener(appId);
 };
 
-const getAll = (appId) => {
+exports.getAll = (appId) => {
   return queue[appId] ? queue[appId] : {};
 };
 
-const clear = (appId) => {
+exports.clear = (appId) => {
   queue[appId] = {};
 };
 
-module.exports = addListener;
-module.exports = getNext;
-module.exports = remove;
-module.exports = put;
-module.exports = getAll;
-module.exports = clear;
